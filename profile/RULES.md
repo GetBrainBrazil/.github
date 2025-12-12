@@ -1,4 +1,4 @@
-# 🛡️ Guia de Acesso, Segurança e Boas Práticas — GetBrain
+# 🛡️ Guia de Acesso, Segurança e Boas Práticas — GetBrain 🧠
 
 Este documento define as **regras internas de controle, segurança e boas práticas** que todos os colaboradores devem seguir ao utilizar os repositórios e ferramentas da empresa.
 
