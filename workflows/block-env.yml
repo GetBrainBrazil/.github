@@ -1,0 +1,48 @@
+name: 🛡️ Bloqueio de .env
+
+on:
+  pull_request:
+    branches:
+      - main
+      - master
+      - dev
+      - prod
+
+jobs:
+  prevent-env-leak:
+    name: Verificar vazamento de variáveis de ambiente
+    runs-on: ubuntu-latest
+    
+    # Necessário para dar permissão à Action de comentar e fechar o PR
+    permissions:
+      pull-requests: write
+      contents: read
+
+    steps:
+      - name: 📥 Checkout do código
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 🔍 Checar arquivos e bloquear via CLI
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Token nativo do GitHub Actions
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          echo "Analisando os arquivos alterados..."
+          FILES=$(git diff --name-only origin/${{ github.base_ref }}...HEAD)
+          
+          if echo "$FILES" | grep -E '(^|/)\.env'; then
+            echo "❌ ERRO CRÍTICO: Arquivo de ambiente detectado!"
+            
+            # 1. Deixa um comentário avisando o parceiro
+            gh pr comment $PR_NUMBER --body "🚨 **Bloqueio de Segurança:** Um arquivo \`.env\` foi detectado neste PR. Para proteger nossas credenciais, este PR foi fechado automaticamente. Por favor, remova o arquivo do seu commit e abra um novo PR."
+            
+            # 2. Fecha o PR fisicamente, impedindo o Merge
+            gh pr close $PR_NUMBER
+            
+            # 3. Falha a esteira
+            exit 1
+          else
+            echo "✅ Nenhum arquivo .env detectado. Seguro para prosseguir."
+          fi

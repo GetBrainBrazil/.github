@@ -1,18 +1,12 @@
-## 📝 O que foi alterado?
-## 📂 Onde as alterações foram feitas?
+## 💡 O que e Por quê? (Contexto)
+## 🛠 Foco da Revisão e Decisões Técnicas
+
 - 
 
-
-## 📸 Evidências (Screenshots / GIFs / Vídeos)
-## ✅ Checklist do Desenvolvedor
-- [ ] Meu código segue as diretrizes de estilo do projeto (sem erros de linting).
-- [ ] Realizei uma auto-revisão do meu próprio código.
-- [ ] Comentei meu código em áreas complexas de entender.
-- [ ] Adicionei/atualizei testes que provam que minha alteração funciona (se aplicável).
-- [ ] As alterações não geram novos avisos (warnings) no console.
-
-## 💡 Contexto (O Porquê)
-## 🛠 Decisões Técnicas
-## ⚠️ Pontos de Atenção / Riscos
-## 🔍 Onde focar a revisão?
-## 📸 Demonstração (Visual)
+## ⚠️ Pontos de Atenção ou Riscos
+## 📸 Demonstração / Evidências (Obrigatório)
+## ✅ Checklist de Qualidade
+- [] O código segue os padrões do ecossistema utilizado (ex: paradigma funcional e tipagem no TypeScript; PEP-8 e type hints no Python).
+- [] Não há chaves de API, senhas ou dados sensíveis expostos no código.
+- [] Removi todos os `console.log` e `print()` de debug antes de subir o código.
+- [] Eu mesmo já revisei meu código antes de abrir este PR.
